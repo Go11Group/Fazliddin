@@ -1,5 +1,5 @@
 --1--
-    -- create qivotganimde shunnaqa qib ketganman
+    -- create qivotganimda shunnaqa qib ketganman
 
 --2--
 select c.name, best_student.name from course c
