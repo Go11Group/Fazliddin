@@ -41,3 +41,25 @@ func (u *UserRepo) GetUsers() []User{
     u.Db.Find(&users)
 	return users
 }
+
+func (c *UserRepo) Filter(chose, filter_by string) []User {
+	users := []User{}
+	
+	switch chose{
+	case "first_name":
+		c.Db.Where("firs_name = ?", filter_by).Find(&users)
+	case "last_name":
+		c.Db.Where("last_name = ?", filter_by).Find(&users)
+	case "email":
+		c.Db.Where("email = ?", filter_by).Find(&users)
+	case "age":
+		c.Db.Where("age = ?", filter_by).Find(&users)
+	case "field":
+		c.Db.Where("field = ?", filter_by).Find(&users)
+	case "gender":
+		c.Db.Where("gender = ?", filter_by).Find(&users)
+	case "is_employe":
+		c.Db.Where("is_employe = ?", filter_by).Find(&users)
+	}
+	return users
+}
