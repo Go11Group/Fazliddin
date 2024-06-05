@@ -46,4 +46,5 @@ func hendleConn(conn net.Conn) {
 			fmt.Println("ERROR: ", err)
 		}
 	}
+	fmt.Println("hello")
 }
