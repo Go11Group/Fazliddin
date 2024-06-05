@@ -7,13 +7,13 @@ create table persons(
     is_maried bool
 );
 
-explain(enelyse)
+explain(analyse)
 select * from persons where id = 'fffb58e2-4e0d-4698-b1b5-411355b44aa2';
 
 
 create index persons_indx on persons(id);
 
-explain(enelyse)
+explain(analyse)
 select * from persons where id = 'fffb58e2-4e0d-4698-b1b5-411355b44aa2';
 
 drop index persons_indx;
@@ -21,5 +21,5 @@ drop index persons_indx;
 
 create index persons_indx on persons using hash (id);
 
-explain(enelyse)
+explain(analyse)
 select * from persons where id = 'fffb58e2-4e0d-4698-b1b5-411355b44aa2'
