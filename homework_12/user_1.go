@@ -4,53 +4,47 @@ import (
 	"bufio"
 	"fmt"
 	"net"
+	"os"
 )
 
-var mp = make(map[net.Conn]bool)
-
 func main() {
-	listener, err := net.Listen("tcp", ":8080")
+	// Connect to the server.
+	conn, err := net.Dial("tcp", "localhost:8070")
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("Error connecting to server:", err)
 		return
 	}
-	defer listener.Close()
-	fmt.Println("Server is listening on port 8080...")
+	defer conn.Close()
 
+	go sender(conn)
+
+	listener(conn)
+}
+
+func sender(conn net.Conn) {
+	reader := bufio.NewReader(os.Stdin)
 	for {
-		conn, err := listener.Accept()
+		fmt.Print("Enter message: ")
+		input, err := reader.ReadString('\n')
+		if err != nil {
+			fmt.Println("Error reading input:", err)
+			return
+		}
+		_, err = conn.Write([]byte(input))
 		if err != nil {
 			fmt.Println(err)
-			continue
 		}
-		go handleConnection(conn)
+		fmt.Println("your message: ", input)
 	}
 }
 
-func handleConnection(conn net.Conn) {
-	defer conn.Close()
-	fmt.Println("Client connected:", conn.RemoteAddr().String())
-
-	mp[conn] = true
-	reader := bufio.NewReader(conn)
+func listener(conn net.Conn) {
 	for {
-
-		fmt.Println(mp)
-		// Read data from the connection.
-		message, err := reader.ReadString('\n')
+		byt := make([]byte, 1000)
+		n, err := conn.Read(byt)
 		if err != nil {
-			delete(mp, conn)
-			fmt.Println("Error reading message:", err)
-			return
+			fmt.Println("Error while listening message: ", err.Error())
 		}
-		fmt.Print("Received message: ", string(message))
-		message = message[:len(message)-1]
-		for i := range mp {
-			fmt.Println("sende_________")
-			_, err := i.Write([]byte(message + "\n"))
-			if err != nil {
-				fmt.Println(err.Error())
-			}
-		}
+		fmt.Println(string(byt[:n]))
 	}
 }

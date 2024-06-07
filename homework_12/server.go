@@ -1,50 +1,66 @@
 package main
 
-import(
+import (
+	"bufio"
 	"fmt"
 	"net"
-	"bufio"
-	_"strings"
 )
 
-func main(){
-	listner, err := net.Listen("tcp", ":8080")
-	if err != nil{
-		fmt.Println("ERROR: ", err)
+var mp = make(map[net.Conn]bool)
+
+func main() {
+	// Listen for incoming connections.
+	listener, err := net.Listen("tcp", ":8070")
+	if err != nil {
+		fmt.Println("Error setting up listener:", err)
 		return
 	}
+	defer listener.Close()
+	fmt.Println("Server is listening on port 8070...")
 
-	defer listner.Close()
-	fmt.Println("Server is listenin on port: 8080... ;")
-
-	for{
-		conn, err := listner.Accept()
-		if err != nil{
-			fmt.Println("ERROR: ", err)
-			return
+	for {
+		// Accept a connection from a client.
+		conn, err := listener.Accept()
+		if err != nil {
+			fmt.Println("Error accepting connection:", err)
+			continue
 		}
-		go hendleConn(conn)
+		go handleConnection(conn) // Handle each connection in a new goroutine.
 	}
 }
 
-var ls = [][]byte{}
-
-func hendleConn(conn net.Conn) {
+func handleConnection(conn net.Conn) {
 	defer conn.Close()
+	fmt.Println("Client connected:", conn.RemoteAddr().String())
 
+	mp[conn] = true
 	reader := bufio.NewReader(conn)
-	for{
-		messege, err := reader.ReadString('\n')
-		if err != nil{
-			fmt.Println("ERROR: ", err)
+	for {
+
+		fmt.Println(mp)
+		// Read data from the connection.
+		message, err := reader.ReadString('\n')
+		if err != nil {
+			delete(mp, conn)
+			fmt.Println("Error reading message:", err)
 			return
 		}
-		ls = append(ls, messege)
-		fmt.Println(messege)
-		_, err = conn.Write([]byte(messege))
-		if err != nil{
-			fmt.Println("ERROR: ", err)
+
+		// // Echo the message back to the client.
+		fmt.Print("Received message: ", string(message))
+		message = message[:len(message)-1]
+		// _, err = conn.Write([]byte(strings.ToUpper(message) + " FROM SERVER!\n")) // Echo back in uppercase.
+		// if err != nil {
+		// 	fmt.Println("Error writing message:", err)
+		// 	return
+		// }
+
+		for i := range mp {
+			fmt.Println("sende_________")
+			_, err := i.Write([]byte(message + "\n"))
+			if err != nil {
+				fmt.Println("Error while sending message from server: ", err.Error())
+			}
 		}
 	}
-	fmt.Println("hello")
 }
