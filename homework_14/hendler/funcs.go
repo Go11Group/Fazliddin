@@ -7,6 +7,7 @@ import (
 	"model/product"
 	"model/user"
 	"net/http"
+	"strconv"
 )
 
 type Handler struct{
@@ -43,6 +44,24 @@ func (h *Handler) Get (w http.ResponseWriter, r *http.Request){
 	if err != nil{
 		fmt.Println("Get : ", err)
 		return
+	}
+	w.Write(data)
+}
+
+func (h *Handler) GetById (w http.ResponseWriter, r *http.Request){
+	head := r.Header.Get("id")
+	id, err := strconv.Atoi(head)
+	if err != nil{
+		fmt.Println(err)
+	}
+	user, err := h.User.GetById(id)
+	if err != nil{
+		fmt.Println(err)
+	}
+
+	data, err := json.Marshal(user)
+	if err != nil{
+		fmt.Println(err)
 	}
 	w.Write(data)
 }
