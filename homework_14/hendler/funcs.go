@@ -65,3 +65,4 @@ func (h *Handler) GetById (w http.ResponseWriter, r *http.Request){
 	}
 	w.Write(data)
 }
+
