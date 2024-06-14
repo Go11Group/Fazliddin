@@ -2,11 +2,11 @@ package course
 
 import "time"
 
-type Course struct{
-	Course_id string
-    Title string
-    Description string
-    Created_at time.Time
-    Update_at time.Time
-    Deleted_at time.Time
+type Course struct {
+	CourseID    string    `json:"course_id"`
+	Title       string    `json:"title"`
+	Description string    `json:"description"`
+	CreatedAt   time.Time `json:"created_at"`
+	UpdatedAt   time.Time `json:"updated_at"`
+	DeletedAt   int       `json:"deleted_at,omitempty"`
 }

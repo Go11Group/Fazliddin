@@ -2,6 +2,7 @@ package lesson
 
 import (
 	"database/sql"
+	"fmt"
 	"time"
 )
 
@@ -15,15 +16,14 @@ func NewLessonRepo(db *sql.DB) *LessonRepo {
 
 // Insert into users
 func (l *LessonRepo) Create(lesson Lesson) error {
-	_, err := l.DB.Exec("insert into Lessons(lesson_id, course_id, title, content) values($1, $2, $3, $4)",
-		lesson.Lesson_id, lesson.Course_id, lesson.Title, lesson.Content)
-
+	_, err := l.DB.Exec("insert into Lessons(course_id, title, content) values($1, $2, $3)",
+		lesson.CourseID, lesson.Title, lesson.Content)
 	return err
 }
 
 // ........
-func (l *LessonRepo) Get() ([]Lesson, error) {
-	rows, err := l.DB.Query("select * from lessons")
+func (l *LessonRepo) Get(q string, arr []interface{}) ([]Lesson, error) {
+	rows, err := l.DB.Query(q, arr...)
 	if err != nil {
 		return nil, err
 	}
@@ -31,8 +31,8 @@ func (l *LessonRepo) Get() ([]Lesson, error) {
 	lessons := []Lesson{}
 	for rows.Next() {
 		lesson := Lesson{}
-		err = rows.Scan(&lesson.Lesson_id, &lesson.Course_id, &lesson.Title, &lesson.Content,
-			&lesson.Created_at, &lesson.Update_at, &lesson.Deleted_at)
+		err = rows.Scan(&lesson.LessonID, &lesson.CourseID, &lesson.Title, &lesson.Content,
+			&lesson.CreatedAt, &lesson.UpdatedAt, &lesson.DeletedAt)
 		if err != nil {
 			return nil, err
 		}
@@ -42,26 +42,30 @@ func (l *LessonRepo) Get() ([]Lesson, error) {
 }
 
 // Get user by ID
-func (u *LessonRepo) GetById(id int) (Lesson, error) {
+func (u *LessonRepo) GetById(id string) (Lesson, error) {
 	lesson := Lesson{}
-
-	err := u.DB.QueryRow("select * from lessons where id = $1", id).
-		Scan(&lesson.Lesson_id, &lesson.Course_id, &lesson.Title, &lesson.Content,
-			&lesson.Created_at, &lesson.Update_at, &lesson.Deleted_at)
+	err := u.DB.QueryRow("select * from lessons where lesson_id = $1 and deleted_at=0", id).
+		Scan(&lesson.LessonID, &lesson.CourseID, &lesson.Title, &lesson.Content,
+			&lesson.CreatedAt, &lesson.UpdatedAt, &lesson.DeletedAt)
 
 	return lesson, err
 }
 
 // Update lesson-> Course_id, Title, Content
-func (u *LessonRepo) Update(lesson Lesson) error {
-	_, err := u.DB.Exec("update lessons set course_id=$1, title=$2, content=$3, update_at=$4 where id=$5",
-		lesson.Course_id, lesson.Title, lesson.Content, time.Now(), lesson.Lesson_id)
+func (u *LessonRepo) Update(id string, lesson Lesson) error {
+	fmt.Printf("%+v\n\n", lesson)
+	_, err := u.DB.Exec("update lessons set course_id=$1, title=$2, content=$3, update_at=$4 where lesson_id=$5 and deleted_at=0",
+		lesson.CourseID, lesson.Title, lesson.Content, time.Now(), id)
 
 	return err
 }
 
 // Delete by Id
-func (l *LessonRepo) Delete(id int) error {
-	_, err := l.DB.Exec("delete from lessons where id = $1", id)
+func (l *LessonRepo) Delete(id string) error {
+	fmt.Println(id)
+	fmt.Println(id)
+	fmt.Println(id)
+	_, err := l.DB.Exec(`update lessons set deleted_at = date_part('epoch', current_timestamp)::INT
+	where lesson_id = $1 and deleted_at = 0`, id)
 	return err
 }
