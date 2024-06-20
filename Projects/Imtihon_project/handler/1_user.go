@@ -2,8 +2,10 @@ package handler
 
 import (
 	"fmt"
-	"model/user"
+	"go/go11/Fazliddin/Projects/Imtihon_project/user"
 	"net/http"
+	"strconv"
+	"time"
 
 	"github.com/gin-gonic/gin"
 )
@@ -14,12 +16,12 @@ func (h *HandlerRepo) UserCreate(c *gin.Context) {
 	err := c.ShouldBindJSON(&user) //for read from body
 	if err != nil {
 		fmt.Println("Error in read from: ", err)
-		c.JSON(200, gin.H{"ERROR IN READ USERS": err})
+		c.JSON(http.StatusBadRequest, gin.H{"ERROR IN READ USERS": err})
 		return
 	}
 	err = h.User.Create(user) //insert to db
 	if err != nil {
-		c.JSON(200, gin.H{"ERROR IN CREATE USERS": err})
+		c.JSON(http.StatusBadRequest, gin.H{"ERROR IN CREATE USERS": err})
 		fmt.Println(err)
 		return
 	}
@@ -36,6 +38,18 @@ func (h *HandlerRepo) UserGet(c *gin.Context) {
 
 	query := `select * from users where deleted_at=0`
 	// filter
+	if len(c.Query("age")) > 0 {
+		age, err := strconv.Atoi(c.Query("age"))
+		age = int(time.Now().Year()) - age
+		if err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"ERROR IN ATOI": err})
+			fmt.Println("ERROR IN Atoi: ", err)
+		}
+		a := strconv.Itoa(age)
+		params["birthday"] = a
+		query += " and DATE_PART('year', birthday) = :birthday"
+	}
+
 	if len(c.Query("name")) > 0 {
 		params["name"] = c.Query("name")
 		query += " and name = :name"
@@ -68,7 +82,7 @@ func (h *HandlerRepo) UserGet(c *gin.Context) {
 	users, err := h.User.Get(query, arr) // get with filter from db
 	if err != nil {
 		fmt.Println(err)
-		c.JSON(200, gin.H{"ERROR IN GET": err})
+		c.JSON(http.StatusBadRequest, gin.H{"ERROR IN GET USERS": err})
 		return
 	}
 	c.JSON(200, users)
@@ -80,7 +94,7 @@ func (h *HandlerRepo) UserGetByID(c *gin.Context) {
 	user, err := h.User.GetById(id) // get by id from db
 	if err != nil {
 		fmt.Println("Error get by ID: ", err)
-		c.JSON(200, gin.H{"ERROR IN Get By ID USERS": err})
+		c.JSON(http.StatusBadRequest, gin.H{"ERROR IN GET BY ID USERS": err})
 		return
 	}
 	c.JSON(200, user)
@@ -92,14 +106,14 @@ func (h *HandlerRepo) UserUpdate(c *gin.Context) {
 	err := c.ShouldBindJSON(&user)
 	if err != nil {
 		fmt.Println("Error in read from: ", err)
-		c.JSON(http.StatusBadRequest, gin.H{"ERROR IN READ USERS": err})
+		c.JSON(http.StatusBadRequest, gin.H{"ERROR IN READ FROM BODY USERS": err})
 		return
 	}
 	id := c.Param("id")
 	err = h.User.Update(id, user) //update user from db
 	if err != nil {
 		fmt.Println("ERROR In Update Users: ", err)
-		c.JSON(200, gin.H{"ERROR IN UPDATE USERS": err})
+		c.JSON(http.StatusBadRequest, gin.H{"ERROR IN UPDATE USERS": err})
 		return
 	}
 	c.JSON(200, gin.H{"User": "Successfully Updated"})
@@ -111,8 +125,8 @@ func (h *HandlerRepo) UserDelete(c *gin.Context) {
 	err := h.User.Delete(id) //soft delete from db
 	if err != nil {
 		fmt.Println("ERROR In Delete Users: ", err)
-		c.JSON(200, gin.H{"ERROR in delete": err})
+		c.JSON(http.StatusBadRequest, gin.H{"ERROR IN SOFT DELETE USERS": err})
 		return
 	}
-	c.JSON(200, gin.H{"User": "Successfully deleted"})
+	c.JSON(200, gin.H{"Successfully": "User deleted"})
 }

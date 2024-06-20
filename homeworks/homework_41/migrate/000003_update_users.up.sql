@@ -1,0 +1,1 @@
+update users set laset_name = 'kimdurov';

@@ -1,0 +1,1 @@
+update users set laset_name = 'ahmatov' where email = 'ahmat008@gimal.com';

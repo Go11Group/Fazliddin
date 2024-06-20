@@ -1,12 +1,12 @@
 package main
 
 import (
-	"model/course"
-	"model/enrollment"
-	"model/handler"
-	"model/lesson"
-	"model/postgres"
-	"model/user"
+	"go/go11/Fazliddin/Projects/Imtihon_project/course"
+	"go/go11/Fazliddin/Projects/Imtihon_project/enrollment"
+	"go/go11/Fazliddin/Projects/Imtihon_project/handler"
+	"go/go11/Fazliddin/Projects/Imtihon_project/lesson"
+	"go/go11/Fazliddin/Projects/Imtihon_project/postgres"
+	"go/go11/Fazliddin/Projects/Imtihon_project/user"
 )
 
 func main() {

@@ -2,7 +2,7 @@ package handler
 
 import (
 	"fmt"
-	"model/enrollment"
+	"go/go11/Fazliddin/Projects/Imtihon_project/enrollment"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

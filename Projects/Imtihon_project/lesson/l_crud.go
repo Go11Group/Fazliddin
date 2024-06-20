@@ -69,3 +69,24 @@ func (l *LessonRepo) Delete(id string) error {
 	where lesson_id = $1 and deleted_at = 0`, id)
 	return err
 }
+
+// editional func ..................................................
+//get all lessons by course ID
+func (l *LessonRepo) GetLessonByCourse(id string) ([]Lesson, error){
+	rows, err := l.DB.Query("select * from lessons where course_id = $1 and deleted_at = 0", id)
+	if err != nil {
+		return nil, err
+	}
+
+	lessons := []Lesson{}
+	for rows.Next() {
+		lesson := Lesson{}
+		err = rows.Scan(&lesson.LessonID, &lesson.CourseID, &lesson.Title, &lesson.Content,
+			&lesson.CreatedAt, &lesson.UpdatedAt, &lesson.DeletedAt)
+		if err != nil {
+			return nil, err
+		}
+		lessons = append(lessons, lesson)
+	}
+	return lessons, nil
+}

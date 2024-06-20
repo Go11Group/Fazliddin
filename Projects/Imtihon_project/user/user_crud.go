@@ -62,3 +62,27 @@ func (u *UserRepo) Delete(id string) error {
 	where user_id = $1 and deleted_at = 0`, id)
 	return err
 }
+
+// editional func............................................
+// get users by course id
+func (u *UserRepo) GetByCourseID(id string) ([]User, error) {
+	rows, err := u.DB.Query(`select u.user_id, u.name, u.email, u.birthday, u.password, u.created_at, u.update_at, u.deleted_at
+from users u
+join enrollment e
+on e.user_id = u.user_id
+where e.course_id = $1`, id)
+	if err != nil {
+		return nil, err
+	}
+	users := []User{}
+	for rows.Next() {
+		user := User{}
+		err = rows.Scan(&user.UserID, &user.Name, &user.Email, &user.Birthday,
+			&user.Password, &user.CreatedAt, &user.UpdatedAt, &user.DeletedAt)
+		if err != nil {
+			return nil, err
+		}
+		users = append(users, user)
+	}
+	return users, nil
+}

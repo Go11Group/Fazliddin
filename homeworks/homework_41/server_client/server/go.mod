@@ -1,12 +1,8 @@
-module go/go11/Fazliddin/Projects/Imtihon_project
+module homework_41/server_client/server
 
 go 1.22.3
 
-require (
-	github.com/gin-gonic/gin v1.10.0
-	github.com/google/uuid v1.6.0
-	github.com/lib/pq v1.10.9
-)
+require github.com/gin-gonic/gin v1.10.0
 
 require (
 	github.com/bytedance/sonic v1.11.6 // indirect

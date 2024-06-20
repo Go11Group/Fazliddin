@@ -1,0 +1,1 @@
+delete from users where email = 'ahmat008@gimal.com'

@@ -2,6 +2,8 @@ package course
 
 import (
 	"database/sql"
+	"errors"
+	"fmt"
 	"time"
 )
 
@@ -81,6 +83,44 @@ func (c *CourseRepo) GetCoursesByUserID(id string) ([]Course, error) {
 		course := Course{}
 		err := rows.Scan(&course.CourseID, &course.Title, &course.Description, &course.CreatedAt,
 			&course.UpdatedAt, &course.DeletedAt)
+		if err != nil {
+			return nil, err
+		}
+		courses = append(courses, course)
+	}
+	return courses, nil
+}
+
+type CoursePopular struct {
+	CourseID         string `json:"course_id"`
+	CourseTitle      string `json:"course_title"`
+	EnrollmentsCount int    `json:"enrollments_count"`
+}
+
+// Get The Most Popular Course
+func (c *CourseRepo) Popular(start_date, end_date string) ([]CoursePopular, error) {
+	if start_date == "" || end_date == "" {
+		fmt.Println(start_date, end_date)
+		return nil, errors.New("invalid dates")
+	}
+	query := `
+	select c.course_id, c.title, count(e.user_id) as enrollment_count
+	from course c
+	join enrollment e
+	on c.course_id = e.course_id
+	where c.deleted_at = 0 and e.deleted_at = 0 and e.enrollment_data between $1 and $2
+	group by c.course_id
+	order by enrollment_count desc;`
+
+	rows, err := c.DB.Query(query, start_date, end_date)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var courses []CoursePopular
+	for rows.Next() {
+		var course CoursePopular
+		err := rows.Scan(&course.CourseID, &course.CourseTitle, &course.EnrollmentsCount)
 		if err != nil {
 			return nil, err
 		}

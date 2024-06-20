@@ -1,10 +1,10 @@
 package handler
 
 import (
-	"model/course"
-	"model/enrollment"
-	"model/lesson"
-	"model/user"
+	"go/go11/Fazliddin/Projects/Imtihon_project/course"
+	"go/go11/Fazliddin/Projects/Imtihon_project/enrollment"
+	"go/go11/Fazliddin/Projects/Imtihon_project/lesson"
+	"go/go11/Fazliddin/Projects/Imtihon_project/user"
 	"net/http"
 	"strconv"
 	"strings"
@@ -23,10 +23,10 @@ func Handler(h HandlerRepo) *http.Server {
 
 	gin := gin.Default()
 
-	user := gin.Group("/user")
-	course := gin.Group("/course")
-	lesson := gin.Group("/lesson")
-	enrollment := gin.Group("/enrollment")
+	user := gin.Group("/user")	// grouped for user
+	course := gin.Group("/course")	//grouped for sourse
+	lesson := gin.Group("/lesson")	// grouped from lesson
+	enrollment := gin.Group("/enrollment")	// grouped for enrollment
 
 	// for users
 	user.POST("", h.UserCreate)
@@ -34,6 +34,8 @@ func Handler(h HandlerRepo) *http.Server {
 	user.GET("/:id", h.UserGetByID)
 	user.PUT("/:id", h.UserUpdate)
 	user.DELETE("/:id", h.UserDelete)
+	user.GET("/:id/courses", h.GetCoursesWithUserID) // editional
+	user.GET("/search", h.UserSearch)
 
 	//for courses
 	course.POST("", h.CourseCreate)
@@ -41,7 +43,9 @@ func Handler(h HandlerRepo) *http.Server {
 	course.GET("/:id", h.CourseGetByID)
 	course.PUT("/:id", h.CourseUpdate)
 	course.DELETE("/:id", h.CourseDelete)
-	course.GET("/getCoursesByU/:id", h.GetCoursesWithUserID)
+	course.GET("/:id/lesson", h.GetLessonByCourseID)    // editional
+	course.GET("/:id/enrollments", h.UserGetByCourseID) // editional
+	course.GET("/popular", h.CoursePopular)
 
 	//for lessons
 	lesson.POST("", h.LessonCreate)
@@ -50,7 +54,7 @@ func Handler(h HandlerRepo) *http.Server {
 	lesson.PUT("/:id", h.LessonUpdate)
 	lesson.DELETE("/:id", h.LessonDelete)
 
-	//for lessons
+	//for enrollment
 	enrollment.POST("", h.EnrollmentCreate)
 	enrollment.GET("", h.EnrollmentGet)
 	enrollment.GET("/:id", h.EnrollmentGetByID)

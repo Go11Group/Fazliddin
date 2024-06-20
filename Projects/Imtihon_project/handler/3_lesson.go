@@ -2,7 +2,7 @@ package handler
 
 import (
 	"fmt"
-	"model/lesson"
+	"go/go11/Fazliddin/Projects/Imtihon_project/lesson"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -67,7 +67,7 @@ func (h *HandlerRepo) LEssonGet(c *gin.Context) {
 	course, err := h.Lesson.Get(query, arr) // get with filter from db
 	if err != nil {
 		fmt.Println(err)
-		c.JSON(200, gin.H{"ERROR IN GET": err})
+		c.JSON(http.StatusBadRequest, gin.H{"ERROR IN GET": err})
 		return
 	}
 	c.JSON(200, course)
@@ -79,7 +79,7 @@ func (h *HandlerRepo) LessonGetByID(c *gin.Context) {
 	course, err := h.Lesson.GetById(id) // get by id from db
 	if err != nil {
 		fmt.Println("Error get by ID: ", err)
-		c.JSON(200, gin.H{"ERROR IN Get By ID Lesson": err})
+		c.JSON(http.StatusBadRequest, gin.H{"ERROR IN Get By ID Lesson": err})
 		return
 	}
 	c.JSON(200, course)
@@ -91,18 +91,14 @@ func (h *HandlerRepo) LessonUpdate(c *gin.Context) {
 	err := c.ShouldBindJSON(&lesson)
 	if err != nil {
 		fmt.Println("Error in read from: ", err)
-		c.JSON(http.StatusBadRequest, gin.H{"ERROR IN READ Course": err})
+		c.JSON(http.StatusBadRequest, gin.H{"ERROR IN READ Lesson": err})
 		return
 	}
 	id := c.Param("id")
-	fmt.Println(id)
-	fmt.Println(id)
-	fmt.Println(id)
-	fmt.Println(id)
 	err = h.Lesson.Update(id, lesson) //update user from db
 	if err != nil {
 		fmt.Println("ERROR In Update Course: ", err)
-		c.JSON(200, gin.H{"ERROR IN UPDATE COURSE": err})
+		c.JSON(http.StatusBadRequest, gin.H{"ERROR IN UPDATE Lesson": err})
 		return
 	}
 	c.JSON(200, gin.H{"User": "Successfully Updated"})
@@ -113,8 +109,8 @@ func (h *HandlerRepo) LessonDelete(c *gin.Context) {
 	id := c.Param("id")
 	err := h.Lesson.Delete(id) //soft delete from db
 	if err != nil {
-		fmt.Println("ERROR In Delete Users: ", err)
-		c.JSON(200, gin.H{"ERROR in delete": err})
+		fmt.Println("ERROR In Delete Lesson: ", err)
+		c.JSON(http.StatusBadRequest, gin.H{"ERROR in delete": err})
 		return
 	}
 	c.JSON(200, gin.H{"User": "Successfully deleted"})
