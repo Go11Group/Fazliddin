@@ -30,6 +30,7 @@ func (h *HandlerRepo) UserGetByID(c *gin.Context) {
 		fmt.Println("ERROR IN GET_ID : ", err)
 		return
 	}
+
 	c.JSON(http.StatusOK, user)
 }
 

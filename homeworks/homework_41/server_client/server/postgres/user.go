@@ -2,6 +2,7 @@ package postgres
 
 import (
 	"database/sql"
+	"fmt"
 	user "homework_41/server_client/server/modul"
 )
 
@@ -10,6 +11,8 @@ func NewUserRepo(db *sql.DB) *UserRepo {
 }
 
 func (u *UserRepo) Create(us user.User) error {
+	fmt.Println(us)
+	fmt.Println("hello")
 	_, err := u.DB.Exec(`insert into users (first_name, last_name, age, email)
 	values ($1, $2, $3, $4)`, us.FirstName, us.LastName, us.Age, us.Email)
 	return err
@@ -37,7 +40,7 @@ func (u *UserRepo) Get() ([]user.User, error) {
 
 func(u *UserRepo) GetByID(id string) (user.User, error) {
 	user := user.User{}
-	err := u.DB.QueryRow("select * from usdrs where id = $1", id).
+	err := u.DB.QueryRow("select * from users where id = $1", id).
 	Scan(&user.ID, &user.FirstName, &user.LastName, &user.Age, &user.Email)
 	return user, err
 }
