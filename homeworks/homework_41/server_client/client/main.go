@@ -31,6 +31,9 @@ func main() {
 	// }
 	// fmt.Println(user)
 
-	err := user.Delete("d8eaf3f8-c9a6-4bd4-bcce-2ad29a919fef")
+	// err := user.Delete("d8eaf3f8-c9a6-4bd4-bcce-2ad29a919fef")
+	// fmt.Println(err)
+
+	err := user.Update("e3295017-367b-42f9-b027-f043330d3fbf")
 	fmt.Println(err)
 }

@@ -43,12 +43,16 @@ func (h *HandlerRepo) UserGet(c *gin.Context) {
 }
 
 func (h *HandlerRepo) UserUpdate(c *gin.Context) {
+	id := c.Param("id")
 	u := user.User{}
-	err := c.ShouldBind(&u)
+	err := c.ShouldBindJSON(&u)
+	fmt.Println(u)
+	fmt.Println(u)
+	fmt.Println(u)
 	if err != nil {
 		fmt.Println("ERROR JSON : ", err)
 	}
-	err = h.User.Update(u)
+	err = h.User.Update(u, id)
 	if err != nil {
 		fmt.Println("DATABASE ERROR : ", err)
 		return

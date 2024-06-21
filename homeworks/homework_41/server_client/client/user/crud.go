@@ -83,3 +83,29 @@ func Delete(id string) error{
 
 	return nil
 }
+
+func Update(id string) error{
+	a := "http://localhost:8080/user/" + id
+
+	user := User{
+		FirstName: "kimdur",
+		LastName: "Ahmatov",
+		Age: 5,
+	}
+	b, err := json.Marshal(user)
+	if err != nil{
+		return err
+	}
+	client := http.Client{}
+	
+	res, err := http.NewRequest("PUT", a,  bytes.NewBuffer(b))
+	if err != nil{
+		return err
+	}
+
+	_, err = client.Do(res)
+	if err != nil{
+		return err
+	}
+	return nil
+}

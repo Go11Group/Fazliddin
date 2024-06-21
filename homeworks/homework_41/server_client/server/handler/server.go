@@ -14,7 +14,7 @@ func Server(handler HandlerRepo) *http.Server {
 	user.POST("", handler.UserCreate)
 	user.GET("/:id", handler.UserGetByID)
 	user.GET("", handler.UserGet)
-	user.PUT("", handler.UserUpdate)
+	user.PUT("/:id", handler.UserUpdate)
 	user.DELETE("/:id", handler.UserDelete)
 
 	return &http.Server{Addr: ":8080", Handler: gin}

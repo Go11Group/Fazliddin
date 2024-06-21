@@ -45,9 +45,10 @@ func(u *UserRepo) GetByID(id string) (user.User, error) {
 	return user, err
 }
 
-func(u *UserRepo) Update(user user.User) error{
-	_, err := u.DB.Exec("update users set first_name = $1, laset_name = $2, age = $3, email = $4",
-	user.FirstName, user.LastName, user.Age, user.Email)
+func(u *UserRepo) Update(user user.User, id string) error{
+
+	_, err := u.DB.Exec("update users set first_name = $1, last_name = $2, age = $3, email = $4 where id = $5",
+	user.FirstName, user.LastName, user.Age, user.Email, id)
 	return err
 }
 
