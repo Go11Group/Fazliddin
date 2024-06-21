@@ -1,7 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"homeworks/homework_42/handler"
+)
 
 func main() {
-	fmt.Println("hello world")
+	server := handler.Handler()
+
+	err := server.ListenAndServe()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 }

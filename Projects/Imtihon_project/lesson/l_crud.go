@@ -37,6 +37,7 @@ func (l *LessonRepo) Get(q string, arr []interface{}) ([]Lesson, error) {
 			return nil, err
 		}
 		lessons = append(lessons, lesson)
+		fmt.Println(lesson)
 	}
 	return lessons, nil
 }

@@ -27,6 +27,10 @@ func (h *HandlerRepo) LessonCreate(c *gin.Context) {
 
 // HandlerRepo struct for Get users with filter
 func (h *HandlerRepo) LEssonGet(c *gin.Context) {
+	fmt.Println("hello")
+	fmt.Println("hello")
+	fmt.Println("hello")
+	fmt.Println("hello")
 	var (
 		params = make(map[string]interface{})
 		arr    []interface{}
@@ -70,6 +74,7 @@ func (h *HandlerRepo) LEssonGet(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"ERROR IN GET": err})
 		return
 	}
+	fmt.Println(course)
 	c.JSON(200, course)
 }
 

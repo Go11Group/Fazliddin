@@ -12,6 +12,7 @@ import (
 func (h *HandlerRepo) CourseCreate(c *gin.Context) {
 	course := course.Course{}
 	err := c.ShouldBindJSON(&course) //for read from body
+	fmt.Println(course)
 	if err != nil {
 		fmt.Println("Error in read from: ", err)
 		c.JSON(http.StatusBadRequest, gin.H{"ERROR IN READ COURSE": err})
