@@ -154,9 +154,10 @@ func Update(c *gin.Context){
 
 	req, err := http.NewRequest("PUT", url, bytes.NewBuffer(body))
 
-	_, err = client.Do(req)
+	res, err := client.Do(req)
 	if err != nil{
-		
+		fmt.Print(err)
+		return
 	}
 	defer res.Body.Close()
 
@@ -165,4 +166,32 @@ func Update(c *gin.Context){
 	} else {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "not created"})
 	}
+}
+
+func Delete(c *gin.Context){
+	url := "http://localhost:8080"
+	url += c.Request.URL.String()
+
+	client := http.Client{}
+
+	req, err := http.NewRequest("DELETE", url, nil)
+	if err != nil{
+		fmt.Println(err)
+		return
+	}
+
+	res, err := client.Do(req)
+
+	defer res.Body.Close()
+	if err != nil{
+		fmt.Println(err)
+		return
+	}
+
+	if res.StatusCode == http.StatusOK {
+		c.JSON(http.StatusOK, gin.H{"success": "created"})
+	} else {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "not created"})
+	}
+
 }

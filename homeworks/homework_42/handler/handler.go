@@ -29,7 +29,7 @@ func Handler() *http.Server {
 	course.GET("", Get)
 	course.GET("/:id", GetByID)
 	course.PUT("/:id", Update)
-	// course.DELETE("/:id", CourseDelete)
+	course.DELETE("/:id", Delete)
 	// course.GET("/:id/lesson", GetLessonByCourseID)    // editional
 	// course.GET("/:id/enrollments", UserGetByCourseID) // editional
 	// course.GET("/popular", CoursePopular)
@@ -39,14 +39,14 @@ func Handler() *http.Server {
 	lesson.GET("", Get)
 	lesson.GET("/:id", GetByID)
 	lesson.PUT("/:id", Update)
-	// lesson.DELETE("/:id", LessonDelete)
+	lesson.DELETE("/:id", Delete)
 
 	// //for enrollment
 	enrollment.POST("", Create)
 	enrollment.GET("", Get)
 	enrollment.GET("/:id", GetByID)
 	enrollment.PUT("/:id", Update)
-	// enrollment.DELETE("/:id", EnrollmentDelete)
+	enrollment.DELETE("/:id", Delete)
 
 	return &http.Server{Addr: ":8081", Handler: gin}
 }
