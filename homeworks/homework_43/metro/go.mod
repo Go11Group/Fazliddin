@@ -1,4 +1,4 @@
-module homeworks/homework_43/user
+module homeworks/homework_43/metro
 
 go 1.22.3
 

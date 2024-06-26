@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option go_package = "genproto/getLastName/";
+
+package protos;
+
+service Generator {
+  rpc GetLastName(Request) returns (Response) {}
+}
+
+message Request {
+  string FirstName = 1;
+}
+
+message Response {
+  string LastName = 1;
+}

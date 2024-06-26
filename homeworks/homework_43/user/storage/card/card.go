@@ -19,8 +19,8 @@ func (u *CardRepo) Create(card models.Card) error {
 	return err
 }
 
-func (u *CardRepo) Get(query string) ([]models.Card, error) {
-	rows, err := u.DB.Query(query)
+func (u *CardRepo) Get(query string, arr interface{}) ([]models.Card, error) {
+	rows, err := u.DB.Query(query, arr)
 	if err != nil {
 		return nil, err
 	}
@@ -39,18 +39,18 @@ func (u *CardRepo) Get(query string) ([]models.Card, error) {
 
 func (u *CardRepo) GetById(id string) (models.Card, error) {
 	card := models.Card{}
-	err := u.DB.QueryRow("select * from card where id = $1 and deleted_at=0", id).
-		Scan(&card.Id, &card.Number, &card.UserID)
+	err := u.DB.QueryRow("select * from card where card_id = $1 and deleted_at=0", id).
+		Scan(&card.Id, &card.Number, &card.UserID, &card.DeletedAt)
 	return card, err
 }
 
 func (u *CardRepo) Update(card models.Card, id string) error {
-	_, err := u.DB.Exec("update users set number=$1, user_id=$2 where id=$3 and deleted_at=0",
+	_, err := u.DB.Exec("update users set number=$1, user_id=$2 where card_id=$3 and deleted_at=0",
 		card.Number, card.UserID, id)
 	return err
 }
 
-func (u *CardRepo) Delete(id int) error {
+func (u *CardRepo) Delete(id string) error {
 	_, err := u.DB.Exec(`update card set
 deleted_at = date_part('epoch', current_timestamp)::INT
 where id = $1 and deleted_at = 0

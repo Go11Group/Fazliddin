@@ -1,4 +1,4 @@
-package storage
+package postres
 
 import (
 	"database/sql"
@@ -11,7 +11,7 @@ const(
 	host = "localhost"
 	port = 5432
 	user = "postgres"
-	dbname = "users"
+	dbname = "metro"
 	password = "123321"
 )
 

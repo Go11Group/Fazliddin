@@ -2,6 +2,7 @@ package storage
 
 import (
 	"database/sql"
+	"fmt"
 	"homeworks/homework_43/user/models"
 )
 
@@ -14,13 +15,16 @@ func NewTransactionRepo(db *sql.DB) *TransactionRepo {
 }
 
 func (t *TransactionRepo) Create(transaction models.Transaction) error {
+	fmt.Println(transaction)
+	fmt.Println(transaction)
+	fmt.Println(transaction)
 	_, err := t.DB.Exec("insert into transaction(card_id, amount, terminal_id, transaction_type) values($1, $2, $3, $4)",
 		transaction.CardId, transaction.Amount, transaction.TerminalId, transaction.TransactionType)
 	return err
 }
 
-func (t *TransactionRepo) Get(query string) ([]models.Transaction, error) {
-	rows, err := t.DB.Query(query)
+func (t *TransactionRepo) Get(query string, arr interface{}) ([]models.Transaction, error) {
+	rows, err := t.DB.Query(query, arr)
 	if err != nil {
 		return nil, err
 	}
@@ -48,12 +52,12 @@ func (t *TransactionRepo) GetById(id string) (models.Transaction, error) {
 
 func (t *TransactionRepo) Update(transaction models.Transaction, id string) error {
 	_, err := t.DB.Exec("update transactions set name=$1, age=$2, phone=$3 where id=$4 and deleted_at=0",
-	transaction.CardId, transaction.Amount,
-	transaction.TerminalId, transaction.TransactionType, id)
+		transaction.CardId, transaction.Amount,
+		transaction.TerminalId, transaction.TransactionType, id)
 	return err
 }
 
-func (t *TransactionRepo) Delete(id int) error {
+func (t *TransactionRepo) Delete(id string) error {
 	_, err := t.DB.Exec(`update transactions set
 deleted_at = date_part('epoch', current_timestamp)::INT
 where id = $1 and deleted_at = 0`, id)
