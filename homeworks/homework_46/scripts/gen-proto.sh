@@ -5,5 +5,3 @@ for x in $(find ${CURRENT_DIR}/protos/* -type d); do
   protoc -I=${x} -I=${CURRENT_DIR}/protos -I /usr/bin/go --go_out=${CURRENT_DIR} \
    --go-grpc_out=${CURRENT_DIR} ${x}/*.proto
 done
-
-
