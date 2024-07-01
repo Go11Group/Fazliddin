@@ -14,3 +14,13 @@ func (t *TransportRepo) GetBusSchedule(ctx context.Context, in *pb.BusNumber) (*
 	}
 	return &pb.BusSchudle{BusNumber: in.Bus, Stations: location}, nil
 }
+
+func (t *TransportRepo) TrucBusLocation(ctx context.Context, in *pb.Location) (*pb.BusWithLocations, error) {
+	bus := []*pb.Bus{
+		{
+			Number: 45,
+			Time:   "every 22 minutes",
+		},
+	}
+	return &pb.BusWithLocations{Busses: bus}, nil
+}
