@@ -6,11 +6,11 @@ import (
 )
 
 type Service struct {
-	dtb *redis_1.BookRepo
+	Dtb *redis_1.BookRepo
 }
 
 func (s *Service) PostBook(book models.Book) (string, error) {
-	err := s.dtb.Create(book)
+	err := s.Dtb.Create(book)
 	if err != nil {
 		return "", err
 	}
@@ -18,12 +18,12 @@ func (s *Service) PostBook(book models.Book) (string, error) {
 }
 
 func (s *Service) GetBook(bookName models.BookName) (*models.Book, error) {
-	book, err := s.dtb.GetByName(bookName)
+	book, err := s.Dtb.GetByName(bookName)
 	return book, err
 }
 
 func (s *Service) DeleteBook(bookName models.BookName) (string, error) {
-	err := s.dtb.Delete(bookName)
+	err := s.Dtb.Delete(bookName)
 	if err != nil {
 		return "", err
 	}
@@ -31,6 +31,6 @@ func (s *Service) DeleteBook(bookName models.BookName) (string, error) {
 }
 
 func (s *Service) GetBooks() (*[]string, error) {
-	result, err := s.dtb.Get()
+	result, err := s.Dtb.Get()
 	return result, err
 }
