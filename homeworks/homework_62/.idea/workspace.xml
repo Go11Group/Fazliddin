@@ -7,6 +7,92 @@
     <list default="true" id="f71d77e7-3ef1-465d-81b8-2dd2883ed415" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../homework_46/generate/transport/trafic.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/../homework_46/generate/transport/trafic.pb.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../homework_46/generate/weather/weather.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/../homework_46/generate/weather/weather.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/book.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/book.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/redis_1/redis.go" beforeDir="false" afterPath="$PROJECT_DIR$/storage/redis_1/redis.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/cespare/xxhash/v2/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/cespare/xxhash/v2/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/cespare/xxhash/v2/testall.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/cespare/xxhash/v2/xxhash.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/cespare/xxhash/v2/xxhash_amd64.s" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/cespare/xxhash/v2/xxhash_arm64.s" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/cespare/xxhash/v2/xxhash_asm.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/cespare/xxhash/v2/xxhash_other.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/cespare/xxhash/v2/xxhash_safe.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/cespare/xxhash/v2/xxhash_unsafe.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/dgryski/go-rendezvous/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/dgryski/go-rendezvous/rdv.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/.golangci.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/.prettierrc.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/CHANGELOG.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/CONTRIBUTING.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/RELEASING.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/acl_commands.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/bitmap_commands.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/cluster_commands.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/command.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/commands.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/doc.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/error.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/gears_commands.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/generic_commands.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/geo_commands.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/hash_commands.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/hyperloglog_commands.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/internal/arg.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/internal/hashtag/hashtag.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/internal/hscan/hscan.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/internal/hscan/structmap.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/internal/internal.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/internal/log.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/internal/once.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/internal/pool/conn.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/internal/pool/conn_check.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/internal/pool/conn_check_dummy.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/internal/pool/pool.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/internal/pool/pool_single.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/internal/pool/pool_sticky.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/internal/proto/reader.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/internal/proto/scan.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/internal/proto/writer.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/internal/rand/rand.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/internal/util.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/internal/util/safe.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/internal/util/strconv.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/internal/util/type.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/internal/util/unsafe.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/iterator.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/json.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/list_commands.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/options.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/osscluster.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/osscluster_commands.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/pipeline.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/probabilistic.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/pubsub.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/pubsub_commands.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/redis.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/result.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/ring.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/script.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/scripting_commands.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/search_commands.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/sentinel.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/set_commands.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/sortedset_commands.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/stream_commands.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/string_commands.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/timeseries_commands.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/tx.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/universal.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/redis/go-redis/v9/version.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/modules.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../homewrok_45/genproto/generator/gen.pb.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../homewrok_45/genproto/generator/gen_grpc.pb.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../homewrok_45/protos/Generetor/gen.proto" beforeDir="false" afterPath="$PROJECT_DIR$/../homewrok_45/protos/Generetor/gen.proto" afterDir="false" />
@@ -53,7 +139,7 @@
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.goide.configuration.GoLibrariesConfigurableProvider"
+    "settings.editor.selected.configurable": "go.sdk"
   }
 }]]></component>
   <component name="SharedIndexes">
