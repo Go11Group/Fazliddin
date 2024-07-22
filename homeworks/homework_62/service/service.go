@@ -34,3 +34,8 @@ func (s *Service) GetBooks() (*[]string, error) {
 	result, err := s.Dtb.Get()
 	return result, err
 }
+
+func (s *Service) CreateUser(user models.UserReq) error {
+	err := s.Dtb.CreateUser(user)
+	return err
+}

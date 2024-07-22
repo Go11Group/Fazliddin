@@ -14,3 +14,9 @@ type BookName struct {
 type Books struct {
 	Books []Book
 }
+
+type UserReq struct {
+	Name     string
+	Role     string
+	Password string
+}

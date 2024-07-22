@@ -12,6 +12,23 @@ type Handler struct {
 	Service *service.Service
 }
 
+func (h Handler) CreataUser(c *gin.Context) {
+
+	var user models.UserReq
+	err := c.ShouldBindJSON(&user)
+	if err != nil {
+		c.JSON(400, gin.H{
+			"error": err.Error(),
+		})
+	}
+
+	err = h.Service.CreateUser(user)
+	if err != nil {
+		c.JSON(400, gin.H{"error": err.Error()})
+		return
+	}
+}
+
 func (h *Handler) CreateBook(c *gin.Context) {
 	var book models.Book
 
